@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505005155) do
+ActiveRecord::Schema.define(version: 20160508195208) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,6 +28,31 @@ ActiveRecord::Schema.define(version: 20160505005155) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "location"
+    t.integer  "creator_id"
+    t.datetime "date"
+    t.string   "cost"
+    t.integer  "venue_id"
+    t.boolean  "private",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.float    "latitude"
+    t.float    "longitude"
+  end
+
+  add_index "events", ["creator_id"], name: "index_events_on_creator_id"
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id"
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

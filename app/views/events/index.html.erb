@@ -1,0 +1,16 @@
+<% header "Our cool events" %>
+
+<p><%= link_to 'Make one!', new_event_path, class: 'btn btn-primary btn-large' %></p>
+
+<% @events.each do |event| %>
+  <div class="well well-lg">
+    <h2><%= link_to event.title, event_path(event) %></h2>
+
+    <p><%= truncate(event.description, length: 350) %></p>
+
+    <div class="btn-group">
+      <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-info' %>
+      <%= link_to 'Delete', event_path(event), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' %>
+    </div>
+  </div>
+<% end %>
