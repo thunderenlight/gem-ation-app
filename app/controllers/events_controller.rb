@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @event = Event.order('created_at DESC')
+    @events = Event.order('created_at DESC')
   end
 
   def new
@@ -13,6 +14,7 @@ class EventsController < ApplicationController
     @invitations = @event.invitations
   end
 
+
   def create
     @event = Event.new(event_params)
     if @event.save
@@ -20,6 +22,21 @@ class EventsController < ApplicationController
       redirect_to root_path
     else
       render 'new'
+    end
+  end
+
+  
+  def edit
+    @event = Event.find(params[:id])
+    puts @event.title
+  end
+
+  def update
+    if @event.update_attributes(event_params)
+      flash[:success] = "event updated!"
+      redirect_to @event
+    else
+      render 'edit'
     end
   end
 

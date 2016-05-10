@@ -32,6 +32,7 @@ gem 'bootstrap-will_paginate'
 gem 'responders'
 gem 'devise_zxcvbn'
 gem 'geocoder'
+gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

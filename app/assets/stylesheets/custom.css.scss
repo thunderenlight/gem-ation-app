@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap/theme";
 
 
 @gray-light: #777;
@@ -38,4 +39,10 @@ section {
 
 .alert-notice {
 	@extend .alert-info;
+}
+
+.well {
+	h2 {
+		margin-top: 0;
+	}
 }
