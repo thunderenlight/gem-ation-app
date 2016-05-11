@@ -33,6 +33,8 @@ gem 'responders'
 gem 'devise_zxcvbn'
 gem 'geocoder'
 gem 'autoprefixer-rails'
+gem 'koala'
+gem 'paperclip'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

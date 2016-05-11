@@ -1,9 +1,11 @@
 <% content_for :top_content do %>
 	<div class="jumbotron">
 		<div class="container">
+		<% if !user_signed_in? %>
 			<h2>Welcome!</h2>
 			<p>Register to get started.</p>
 			<p><%= link_to("Register", new_user_registration_path , class: 'btn btn-primary btn-lg') %></p>
+		<% end %>
 			<div class="center events">
 				<h1 class="display-4">Events</h1>
 				<p> Last event created:<%= link_to(@event.title, @event) %></p>
@@ -11,15 +13,9 @@
 				<%= link_to("new event", new_event_path , class: 'btn btn-primary btn-lg') %>
 			</div>
 			<% if user_signed_in?  %>
-			<%= current_user.name %> is logged in.
+			<%= current_user.invitations.length %> is logged in.
 			<% end %>
 		</div>
 
-		<%= session %>
-
-		<% if !user_signed_in? %>
-		<p>Im not logged in!</p>
-		    
-		<% end %>
 	</div>  
 <% end %>

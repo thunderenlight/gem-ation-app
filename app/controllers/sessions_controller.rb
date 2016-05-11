@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 	 	# else
 	  #   flash[:warning] = "There was an error while trying to authenticate you..."
 	  # end
+    
 	  redirect_to root_path
 	end
 

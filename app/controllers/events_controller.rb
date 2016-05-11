@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  before_action :load_activities, only: [:index, :show, :new, :edit]
 
   def index
     @events = Event.order('created_at DESC')
@@ -32,6 +33,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       flash[:success] = "event updated!"
       redirect_to @event
@@ -43,7 +45,11 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :location, :description)
+    params.require(:event).permit(:title, :location, :description, :date)
+  end
+
+  def load_activities
+    @activities = PublicActivity::Activity.order('created_at DESC').limit(20)
   end
 
 end
