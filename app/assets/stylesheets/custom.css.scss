@@ -31,7 +31,13 @@ section {
 	}
 
 }
-/* forms */ 
+/* forms */
+
+input, textarea, select, .uneditable-input, .btn {
+	
+	margin-bottom: 15px;
+	@include box_sizing;
+} 
 
 .alert-alert {
 	@extend .alert-warning;
@@ -44,5 +50,12 @@ section {
 .well {
 	h2 {
 		margin-top: 0;
+	}
+}
+
+span.image {
+	margin: 20px;
+	input {
+		border: 0;
 	}
 }

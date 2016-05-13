@@ -10,8 +10,12 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
+  has_attached_file :image
+
   has_many :created_events, class_name: "Event", foreign_key: :creator_id
   has_many :invitations
+  has_many :accepted_invitations, through: :invitations, source: :
+
 
 
   class << self
@@ -41,8 +45,13 @@ class User < ActiveRecord::Base
 	 end
  end
 
+
+  def invited?(event)
+  	self.invitations.where(event_id: event.id)
+  end
+
   def password_required?
-		super && provider.blank?	
+	super && provider.blank?	
  end
 
  def facebook

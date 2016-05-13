@@ -1,5 +1,12 @@
 <% header @event.title %>
-
+<div class="media">
+  <div class="media-left">
+    <%= link_to image_tag(@event.image.url, class: 'media-object'), @event.image.url, target: '_blank' %>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= @event.title %></h4>
+  </div>
+</div>
 <p><%= @event.title %></p>
 <p>Location: <%= @event.location %></p>
 <p>Description: <%= @event.description %></p>

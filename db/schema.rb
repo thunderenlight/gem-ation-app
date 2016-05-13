@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511203539) do
+ActiveRecord::Schema.define(version: 20160511230151) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -54,11 +54,15 @@ ActiveRecord::Schema.define(version: 20160511203539) do
     t.datetime "date"
     t.string   "cost"
     t.integer  "venue_id"
-    t.boolean  "private",     default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "private",            default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "events", ["creator_id"], name: "index_events_on_creator_id"
@@ -98,6 +102,10 @@ ActiveRecord::Schema.define(version: 20160511203539) do
     t.string   "image_url"
     t.string   "location"
     t.string   "oauth_token"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
