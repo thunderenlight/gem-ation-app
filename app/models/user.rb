@@ -10,11 +10,17 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
-  has_attached_file :image
+  has_attached_file :image,
+                    styles: { thumb: ["64x64#", :jpg],
+                      original: ['500x500>', :jpg] },
+                      convert_options: { thumb: "-quality 75 -strip", 
+                        original: "-quality 85 -strip" }
+  validates_attachment :image, content_type: { content_type: 
+                    ["image/jpeg", "image/gif", "image/png"]}
 
   has_many :created_events, class_name: "Event", foreign_key: :creator_id
   has_many :invitations
-  has_many :accepted_invitations, through: :invitations, source: :
+  has_many :accepted_invitations, through: :invitations, source: :attended_event_id
 
 
 
