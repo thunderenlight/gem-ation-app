@@ -26,4 +26,6 @@ class Event < ActiveRecord::Base
       self.invitations.create(invitee: user)
     end
 
+    def
+
 end
