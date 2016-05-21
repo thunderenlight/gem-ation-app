@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.order('created_at DESC')
+    @upcoming_events = @events.upcoming_events
   end
 
   def new
@@ -13,6 +14,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @invitations = @event.invitations
+
   end
 
 
@@ -45,7 +47,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :location, :description, :date, :image)
+    params.require(:event).permit(:title, :location, :description, :date, :image, :venue)
   end
 
   def load_activities
