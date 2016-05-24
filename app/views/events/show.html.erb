@@ -15,7 +15,7 @@
               class: 'img-fluid img-rounded', alt: "#{@event.title} on the map"%><br>
               <% if @invitations.count > 0 %>
                   
-			<p>Attending: <%= @invitations.first.invitee.name %></p>
+			<p>Last invitation accepted by: <%= @invitations.last.invitee.name %></p>
               <% end %>
 
 <div class="btn-group">
