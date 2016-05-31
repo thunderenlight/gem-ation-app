@@ -32,3 +32,4 @@ kevent = Chiketto::Event.find '22592779612'#this find works
 
 devents = Eventbrite::Event.search({q: '22592779612'}, 'FHO43SJ3VXJC6S3P2TRR').events[0..3]
 # Next task is to seed my event model 
+ test_events = Unirest.get("https://www.eventbriteapi.com/v3/events/sen=FHO43SJ3VXJC6S3P2TRR").body['events'][0..100].flatten.last['name']
