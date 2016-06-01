@@ -3,8 +3,8 @@ class PagesController < ApplicationController
 
   def index
   	@event = Event.last
-  	@feed = current_user.facebook.get_connections('me', 'photos')
-    @profile = current_user.facebook.get_object('me') { |data| data['education']}
+  	# @feed = current_user.facebook.get_connections('me', 'photos')
+    # @profile = current_user.facebook.get_object('me') { |data| data['education']}
   	
   end
 end

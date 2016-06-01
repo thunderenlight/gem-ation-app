@@ -1,12 +1,17 @@
+require 'open-uri' 
+
 class Event < ActiveRecord::Base
   include PublicActivity::Model
   tracked
+  attr_accessor :image, :img_url
 
   has_attached_file :image,
+                    
                     styles: { thumb: ["64x64#", :jpg],
-                      original: ['500x500>', :jpg] },
-                      convert_options: { thumb: "-quality 75 -strip", 
-                        original: "-quality 85 -strip" }
+                    original: ['500x500>', :jpg] },
+                    convert_options: { thumb: "-quality 75 -strip", 
+                    original: "-quality 85 -strip" }
+          
   validates_attachment :image, content_type: { content_type: 
                     ["image/jpeg", "image/gif", "image/png"]}
 
@@ -18,7 +23,7 @@ class Event < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode
   validates :title, presence: true
-  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user  : nil }
+  # tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user  : nil }
   # after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
 
 
@@ -26,6 +31,10 @@ class Event < ActiveRecord::Base
       self.invitations.create(invitee: user)
     end
 
-    def
+    def img_url(url)
+      self.image = Uri.parse(url).open unless url.blank?
+      # @img_url = url
+      super
+    end
 
 end
