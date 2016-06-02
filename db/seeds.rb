@@ -12,6 +12,7 @@
 # me = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?venue.city=chicago&token=FHO43SJ3VXJC6S3P2TRR")
 # be = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?category=103&token=FHO43SJ3VXJC6S3P2TRR").body.first
 # ve = Unirest.get("https://www.eventbriteapi.com/v3/venues/search/?venue=10913314&token=FHO43SJ3VXJC6S3P2TRR").body.first
+# ven = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?location.address=Indore&expand=organizer,venue&token=FHO43SJ3VXJC6S3P2TRR").body.first
 # me.body.values.last.first.keys
 # => ["name", "description", "id", "url", "start", "end", "created", "changed", "capacity", "status", "currency", "listed", "shareable", "online_event", "tx_time_limit", "hide_start_date", "locale", "is_locked", "privacy_setting", "is_series", "is_series_parent", "is_reserved_seating", "logo_id", "organizer_id", "venue_id", "category_id", "subcategory_id", "format_id", "resource_uri", "logo"]
 # chievents = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?venue.city=chicago&token=FHO43SJ3VXJC6S3P2TRR")
@@ -40,8 +41,11 @@
 
 # devents = Eventbrite::Event.search({q: '22592779612'}, 'FHO43SJ3VXJC6S3P2TRR').events[0..3]
 # Next task is to seed my event model
- test_events = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?venue.city=chicago&token=FHO43SJ3VXJC6S3P2TRR").body['events'][0..100]
+ven = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?location.address=chicago&expand=organizer,venue&token=FHO43SJ3VXJC6S3P2TRR").body['events'][0..100]
+# test_events = Unirest.get("https://www.eventbriteapi.com/v3/events/search/?venue.city=chicago&token=FHO43SJ3VXJC6S3P2TRR").body['events'][0..100]
 
- test_events.each do |e|
- 	Event.create!(image: e['logo'].blank? ? "https://i1.sndcdn.com/avatars-000072406056-xf4ccm-t200x200.jpg" : e['logo']['url'], title: e['name']['text'], description: e['description']['text'], date: e['start']['local'] )
+ ven.each do |e|
+ 	# location = "" 
+ 	# location << e['venue']['address'].values.join
+ 	Event.create!(location: e['venue']['address'].values.compact.join(","), image: e['logo'].blank? ? "https://i1.sndcdn.com/avatars-000072406056-xf4ccm-t200x200.jpg" : e['logo']['url'], title: e['name']['text'], description: e['description']['text'], date: e['start']['local'] )
  end

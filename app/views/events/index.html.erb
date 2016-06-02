@@ -3,7 +3,10 @@
 <p><%= link_to 'Make one!', new_event_path, class: 'btn btn-primary btn-large' %></p>
 
 <% @events.each do |event| %>
-  <div class="well well-lg">
+  <div class="well col-sm">
+  	<div class="media-small">
+  		<%= image_tag(event.image.url(:thumb)) %>
+  	</div>
     <h2><%= link_to event.title, event_path(event) %></h2>
 
     <p><%= truncate(event.description, length: 350) %></p>

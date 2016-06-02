@@ -40,6 +40,7 @@ gem 'autoprefixer-rails'
 gem 'koala'
 gem 'paperclip'
 gem 'unirest'
+gem 'stripe'
 # gem 'tzinfo', '~> 0.3.22'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
