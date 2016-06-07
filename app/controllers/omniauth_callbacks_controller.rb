@@ -15,6 +15,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     redirect_to root_path
   end
-	alias_method :facebook, :eventbrite, :provider
+	alias_method [:facebook, :eventbrite], :provider
 
 end
