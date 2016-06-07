@@ -14,4 +14,4 @@
 facebook_key:    '1708491099389101'
 facebook_secret: '5cdd7dd5d78c73954095c8a5fc19b59c'
 eventbrite_access_token: "TM4HXFSUWZIYIGZPXGVG"
-
+# need to inplement the fb in the app not just login make test cases
