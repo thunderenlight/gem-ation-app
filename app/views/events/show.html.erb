@@ -1,4 +1,5 @@
 <% header @event.title %>
+
 <div class="media">
   <div class="media-left">
     <%= link_to image_tag(@event.image.url, class: 'media-object'), @event.image.url, target: '_blank' %>
@@ -13,7 +14,7 @@
 <p>Coordinates: <%= @event.latitude %><%= @event.longitude %></p>
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@event.latitude},#{@event.longitude}&markers=#{@event.latitude},#{@event.longitude}&zoom=15&size=640x400&key=AIzaSyBWykA_3qHgjjviD1DB1o6iBNbs8RiHYos",
               class: 'img-fluid img-rounded', alt: "#{@event.title} on the map"%><br>
-              <% if @invitations.count > 0 %>
+              <% if !@invitations.empty? %>
                   
 			<p>Last invitation accepted by: <%= @invitations.last.invitee.name %></p>
               <% end %>
